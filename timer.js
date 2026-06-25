@@ -1,9 +1,11 @@
 // Focus Mode Study Timer
-let focusTimer;
-let timeLeft = 25 * 60; // 25 minutes
-const timerDisplay = document.getElementById('timer-display');
 
+/**
+ * Updates the timer display element with the current formatted time.
+ * Depends on timerDisplay DOM element and global timeLeft variable.
+ */
 function updateTimerDisplay() {
+    const timerDisplay = document.getElementById('timer-display');
     if (!timerDisplay) return;
     let minutes = Math.floor(timeLeft / 60);
     let seconds = timeLeft % 60;
@@ -19,20 +21,12 @@ document.getElementById('start-btn')?.addEventListener('click', () => {
             } else {
                 clearInterval(focusTimer);
                 focusTimer = null;
+                timeLeft = 25 * 60; // Reset time after completion
+                updateTimerDisplay();
                 alert("Session complete! Great work.");
             }
         }, 1000);
     }
 });
 
-document.getElementById('pause-btn')?.addEventListener('click', () => {
-    clearInterval(focusTimer);
-    focusTimer = null;
-});
-
-document.getElementById('reset-btn')?.addEventListener('click', () => {
-    clearInterval(focusTimer);
-    focusTimer = null;
-    timeLeft = 25 * 60;
-    updateTimerDisplay();
-});
+// ... (Keep your existing pause/reset logic below this)
