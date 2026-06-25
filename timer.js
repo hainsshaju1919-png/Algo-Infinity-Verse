@@ -1,4 +1,6 @@
-// Focus Mode Study Timer
+// 1. Declare these at the very top so they are available everywhere
+let focusTimer = null;
+let timeLeft = 1500; // 25 minutes * 60 seconds
 
 /**
  * Updates the timer display element with the current formatted time.
@@ -12,6 +14,7 @@ function updateTimerDisplay() {
     timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 
+// 2. Now this will work because focusTimer is defined above
 document.getElementById('start-btn')?.addEventListener('click', () => {
     if (!focusTimer) {
         focusTimer = setInterval(() => {
@@ -21,7 +24,7 @@ document.getElementById('start-btn')?.addEventListener('click', () => {
             } else {
                 clearInterval(focusTimer);
                 focusTimer = null;
-                timeLeft = 25 * 60; // Reset time after completion
+                timeLeft = 1500; 
                 updateTimerDisplay();
                 alert("Session complete! Great work.");
             }
@@ -29,4 +32,4 @@ document.getElementById('start-btn')?.addEventListener('click', () => {
     }
 });
 
-// ... (Keep your existing pause/reset logic below this)
+// Add your pause and reset logic below here...
