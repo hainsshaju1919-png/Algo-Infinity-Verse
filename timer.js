@@ -33,3 +33,18 @@ document.getElementById('start-btn')?.addEventListener('click', () => {
 });
 
 // Add your pause and reset logic below here...
+// Pause button logic
+document.getElementById('pause-btn')?.addEventListener('click', () => {
+    if (focusTimer) {
+        clearInterval(focusTimer);
+        focusTimer = null;
+    }
+});
+
+// Reset button logic
+document.getElementById('reset-btn')?.addEventListener('click', () => {
+    clearInterval(focusTimer);
+    focusTimer = null;
+    timeLeft = 1500; // Reset to 25 minutes
+    updateTimerDisplay();
+});
